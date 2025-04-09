@@ -5,22 +5,19 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form"
 
-export default function PersonalInfo() {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext()
+export default function AddressDetails() {
+  const { control } = useFormContext()
 
   return (
     <div className="space-y-6">
       <FormField
         control={control}
-        name="fullName"
+        name="streetAddress"
         render={({ field }) => (
           <FormItem>
-            <Label htmlFor="fullName">Full Name</Label>
+            <Label htmlFor="streetAddress">Street Address</Label>
             <FormControl>
-              <Input id="fullName" placeholder="John Doe" {...field} className="mt-1" />
+              <Input id="streetAddress" placeholder="123 Main St" {...field} className="mt-1" />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -29,12 +26,12 @@ export default function PersonalInfo() {
 
       <FormField
         control={control}
-        name="email"
+        name="city"
         render={({ field }) => (
           <FormItem>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="city">City</Label>
             <FormControl>
-              <Input id="email" type="email" placeholder="john.doe@example.com" {...field} className="mt-1" />
+              <Input id="city" placeholder="New York" {...field} className="mt-1" />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -43,12 +40,12 @@ export default function PersonalInfo() {
 
       <FormField
         control={control}
-        name="phoneNumber"
+        name="zipCode"
         render={({ field }) => (
           <FormItem>
-            <Label htmlFor="phoneNumber">Phone Number</Label>
+            <Label htmlFor="zipCode">Zip Code</Label>
             <FormControl>
-              <Input id="phoneNumber" placeholder="1234567890" {...field} className="mt-1" />
+              <Input id="zipCode" placeholder="10001" {...field} className="mt-1" />
             </FormControl>
             <FormMessage />
           </FormItem>
