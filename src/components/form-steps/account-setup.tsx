@@ -43,7 +43,7 @@ export default function AccountSetup() {
           <FormItem>
             <Label htmlFor="password">Password</Label>
             <FormControl>
-              <Input id="password" type="password" placeholder="••••••" {...field} className="mt-1" />
+              <Input id="password" type="password" placeholder="######" {...field} className="mt-1" />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -57,7 +57,7 @@ export default function AccountSetup() {
           <FormItem>
             <Label htmlFor="confirmPassword">Confirm Password</Label>
             <FormControl>
-              <Input id="confirmPassword" type="password" placeholder="••••••" {...field} className="mt-1" />
+              <Input id="confirmPassword" type="password" placeholder="######" {...field} className="mt-1" />
             </FormControl>
             <FormMessage />
           </FormItem>
