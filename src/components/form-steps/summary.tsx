@@ -1,21 +1,32 @@
 "use client"
 
-import { CheckCircle2 } from "lucide-react"
-import React from "react"
 import { useFormContext } from "react-hook-form"
-import { Card, CardContent } from "../ui/card"
+import { Card, CardContent } from "@/components/ui/card"
+import { CheckCircle2 } from "lucide-react"
 
-export const Summary = () => {
-  const { getValues } = useFormContext()
+export default function Summary() {
+  // Call hook at the top level
+  const formMethods = useFormContext()
+
+  // Check if context exists
+  if (!formMethods) {
+    return (
+      <div className="p-4 border border-red-300 rounded bg-red-50 text-red-800">
+        Error: Summary component must be used within a FormProvider
+      </div>
+    )
+  }
+
+  const { getValues } = formMethods
   const formData = getValues()
 
   const sections = [
     {
-      title: "Personal Informations",
+      title: "Personal Information",
       fields: [
-        { label: "Full name", value: formData.fullName },
+        { label: "Full Name", value: formData.fullName },
         { label: "Email", value: formData.email },
-        { label: "Phone number", value: formData.phoneNumber },
+        { label: "Phone Number", value: formData.phoneNumber },
       ],
     },
     {
@@ -44,20 +55,16 @@ export const Summary = () => {
 
       {sections.map((section, index) => (
         <Card key={index} className="overflow-hidden">
-          <div className="bg-primary/10 px-4 py-2 font-medium">
-            {section.title}
-          </div>
+          <div className="bg-primary/10 px-4 py-2 font-medium">{section.title}</div>
           <CardContent className="p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
               {section.fields.map((field, fieldIndex) => (
                 <div key={fieldIndex} className="py-1">
-                  <p className="text-sm font-medium text-muted-foreground">
-                    {field.label}
-                  </p>
-                  <p className="mt-1 text-sm">{field.value}</p>
+                  <dt className="text-sm font-medium text-muted-foreground">{field.label}</dt>
+                  <dd className="mt-1 text-sm">{field.value}</dd>
                 </div>
               ))}
-            </div>
+            </dl>
           </CardContent>
         </Card>
       ))}

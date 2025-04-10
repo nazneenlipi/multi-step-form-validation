@@ -1,27 +1,42 @@
 "use client"
 
-import React from 'react'
-import { FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
-import { useFormContext } from 'react-hook-form'
-const { control } = useFormContext()
-export const AccountSetup = () => {
+import { useFormContext } from "react-hook-form"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form"
+
+export default function AccountSetup() {
+  // Call hook at the top level
+  const formMethods = useFormContext()
+
+  // Check if context exists
+  if (!formMethods) {
+    return (
+      <div className="p-4 border border-red-300 rounded bg-red-50 text-red-800">
+        Error: AccountSetup component must be used within a FormProvider
+      </div>
+    )
+  }
+
+  const { control } = formMethods
+
   return (
-    <div className='space-y-6'>
+    <div className="space-y-6">
       <FormField
-      control={control}
-      name="username"
-      render={({ field })=>(
-        <FormItem>
-            <Label htmlFor='username'>Username</Label>
+        control={control}
+        name="username"
+        render={({ field }) => (
+          <FormItem>
+            <Label htmlFor="username">Username</Label>
             <FormControl>
-                <Input id='username' placeholder='lipi' {...field} className='mt-1'/>
+              <Input id="username" placeholder="johndoe" {...field} className="mt-1" />
             </FormControl>
-        </FormItem>
-      )}
+            <FormMessage />
+          </FormItem>
+        )}
       />
-       <FormField
+
+      <FormField
         control={control}
         name="password"
         render={({ field }) => (
@@ -51,4 +66,3 @@ export const AccountSetup = () => {
     </div>
   )
 }
-

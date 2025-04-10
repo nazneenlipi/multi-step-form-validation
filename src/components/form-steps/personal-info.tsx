@@ -6,10 +6,19 @@ import { Label } from "@/components/ui/label"
 import { FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form"
 
 export default function PersonalInfo() {
-  const {
-    control,
-    formState: { errors },
-  } = useFormContext()
+  // Call hook at the top level
+  const formMethods = useFormContext()
+
+  // Check if context exists
+  if (!formMethods) {
+    return (
+      <div className="p-4 border border-red-300 rounded bg-red-50 text-red-800">
+        Error: PersonalInfo component must be used within a FormProvider
+      </div>
+    )
+  }
+
+  const { control } = formMethods
 
   return (
     <div className="space-y-6">
